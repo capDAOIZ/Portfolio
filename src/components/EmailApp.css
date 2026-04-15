@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.retro-container {
+    user-select: none;
+    cursor: default;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.retro-box {
+  box-sizing: border-box;
+}
+
+.retro-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.retro-input {
+  flex-grow: 1;
+  margin-left: auto;
+  width: 271px;
+  padding: 6px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  background-color: #fff;
+  border: 2px solid #c0c0c0;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  border-bottom-color: #808080;
+  border-right-color: #808080;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+  outline: none;
+}
+
+.retro-input:focus {
+  border: 2px inset #808080;
+  background-color: #e0e0e0;
+}
+
+.retro-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.retro-button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px 20px;
+  background-color: #dcdcdc;
+  border: 2px outset #fff;
+  cursor: pointer;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+
+.retro-button:active {
+  border: 2px inset #808080;
+}
+
+
+.retro-textarea {
+  margin: 10px;
+  width: 95%;
+  height: 200px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  resize: none;
+  background-color: #fff;
+  border: 2px solid #c0c0c0;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  border-bottom-color: #808080;
+  border-right-color: #808080;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.retro-textarea:focus {
+    border: 2px inset #808080;
+    background-color: #e0e0e0;
+  }
+
+.retro-success {
+  color: green;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.retro-error {
+  color: red;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.window-content {
+    padding: 0px;
+    background-color: #bdbdbd;
+    font-size: 14px;
+  }

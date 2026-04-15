@@ -1,0 +1,7 @@
+.project-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px 0px 100px 0px;
+  }
+  

@@ -1,0 +1,25 @@
+
+.retro-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .retro-button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    padding: 10px 20px;
+    background-color: #dcdcdc;
+    border: 2px outset #fff;
+    cursor: pointer;
+    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+  }
+  
+  .retro-button:active {
+    border: 2px inset #808080;
+  }
+  .p-about{
+    margin: 5px;
+    font-family: 'Press Start 2P', monospace;     
+    width: 400px;
+  }

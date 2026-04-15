@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body{
+  font-family: 'Press Start 2P', monospace;
+
+}
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #008080; /* color clásico de escritorio Win98 */
+  background-image: url('/wallpaper.jpg'); /* opcional: imagen estilo Win95 */
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 16px;
+  font-family: 'Press Start 2P', monospace;
+  overflow: hidden;
+  flex-direction: column;
+
+}
