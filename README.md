@@ -1,50 +1,62 @@
 # Portfolio Windows 98
 
-Portfolio personal interactivo inspirado en la estética de Windows 98, desarrollado con React, TypeScript y Vite.
+Un portfolio interactivo inspirado en la estética de Windows 98, diseñado para destacar habilidades técnicas y creatividad como desarrollador. Este proyecto combina diseño retro con funcionalidades modernas, ofreciendo una experiencia única y visualmente atractiva.
 
-La idea del proyecto es transformar un portfolio tradicional en una experiencia más visual y original, simulando un escritorio retro con iconos, ventanas movibles, barra de tareas y distintas secciones accesibles como si fueran aplicaciones del sistema.
+## Descripción del Proyecto
 
-## Características
+El objetivo principal de este proyecto es transformar un portfolio tradicional en una experiencia interactiva, simulando un escritorio retro con iconos, ventanas movibles, barra de tareas y aplicaciones funcionales. Este enfoque no solo muestra habilidades técnicas, sino también creatividad en el diseño y la implementación.
 
-- Interfaz inspirada en Windows 98
-- Ventanas arrastrables
-- Iconos de escritorio interactivos
-- Barra de tareas con reloj en tiempo real
-- Sección "Sobre mí"
-- Sección de proyectos
-- Formulario de contacto
-- Descarga de CV en PDF
-- Minijuego de Snake integrado
-- Estilo retro con componentes personalizados
+### Funcionalidades Clave
 
-## Tecnologías utilizadas
+- **Interfaz Retro Inspirada en Windows 98**: Diseño visual que evoca nostalgia y originalidad.
+- **Ventanas Movibles**: Implementación de ventanas arrastrables con `react-draggable`.
+- **Iconos Interactivos**: Iconos de escritorio que abren aplicaciones simuladas.
+- **Barra de Tareas Dinámica**: Incluye un reloj en tiempo real y control de ventanas.
+- **Aplicaciones Integradas**:
+  - **Sobre mí**: Presentación personal.
+  - **Proyectos**: Galería de proyectos destacados.
+  - **Formulario de Contacto**: Envío de mensajes con EmailJS.
+  - **Descarga de CV**: Descarga del currículum en formato PDF.
+  - **Minijuego Snake**: Juego clásico integrado.
+- **Estilo Personalizado**: Uso de TailwindCSS con colores y estilos extendidos.
 
-- React
-- TypeScript
-- Vite
-- CSS
-- react-draggable
-- EmailJS
-- Lucide React / React Icons
+## Tecnologías Utilizadas
 
-## Objetivo del proyecto
+El proyecto está construido con un stack moderno y herramientas de desarrollo eficientes:
 
-El objetivo de este proyecto es mostrar mi perfil como desarrollador de una forma más creativa e interactiva, combinando diseño retro con funcionalidades reales de un portfolio moderno.
+- **Frontend**:
+  - React y TypeScript para una arquitectura robusta y tipada.
+  - TailwindCSS para un diseño modular y eficiente.
+  - Vite como herramienta de construcción rápida y moderna.
+- **Librerías**:
+  - `react-draggable` para ventanas movibles.
+  - `EmailJS` para la integración del formulario de contacto.
+  - `lucide-react` y `react-icons` para iconos personalizados.
+- **Herramientas de Desarrollo**:
+  - ESLint y TypeScript para garantizar calidad y consistencia en el código.
+  - PostCSS para procesamiento de estilos.
 
-## Estructura del proyecto
+## Estructura del Proyecto
 
-- `App.tsx`: controla el escritorio y la apertura de ventanas
-- `components/Window.tsx`: componente base para las ventanas movibles
-- `components/DesktopIcon.tsx`: iconos del escritorio
-- `components/Taskbar.tsx`: barra de tareas con reloj e interacción
-- `components/AboutApp.tsx`: presentación personal
-- `components/ProyectsApp.tsx`: acceso a proyectos
-- `components/EmailApp.tsx`: formulario de contacto
-- `components/CV.tsx`: vista previa y descarga del CV
-- `components/SnakeGame.tsx`: minijuego integrado
+El proyecto está organizado de manera modular para facilitar la escalabilidad y el mantenimiento:
 
-## Instalación
+- **`src/`**: Carpeta principal del código fuente.
+  - **`components/`**: Componentes reutilizables y específicos.
+    - `Window.tsx`: Componente base para ventanas movibles.
+    - `DesktopIcon.tsx`: Iconos interactivos del escritorio.
+    - `Taskbar.tsx`: Barra de tareas con reloj e interacción.
+    - Aplicaciones específicas como `AboutApp.tsx`, `ProyectsApp.tsx`, `EmailApp.tsx`, `SnakeGame.tsx`.
+  - **`services/`**: Lógica de negocio y servicios externos (e.g., integración con EmailJS).
+  - **`assets/`**: Recursos estáticos como imágenes y fuentes.
+- **`public/`**: Archivos estáticos accesibles directamente.
+- **`tailwind.config.js`**: Configuración personalizada de TailwindCSS.
+- **`vite.config.ts`**: Configuración de Vite para el entorno de desarrollo.
 
-```bash
-npm install
-npm run dev
+## Instalación y Uso
+
+Sigue estos pasos para instalar y ejecutar el proyecto localmente:
+
+1. Clona el repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd mi-portfolio
