@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+# Portfolio Windows 98
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personal interactivo inspirado en la estética de Windows 98, desarrollado con React, TypeScript y Vite.
 
-Currently, two official plugins are available:
+La idea del proyecto es transformar un portfolio tradicional en una experiencia más visual y original, simulando un escritorio retro con iconos, ventanas movibles, barra de tareas y distintas secciones accesibles como si fueran aplicaciones del sistema.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características
 
-## Expanding the ESLint configuration
+- Interfaz inspirada en Windows 98
+- Ventanas arrastrables
+- Iconos de escritorio interactivos
+- Barra de tareas con reloj en tiempo real
+- Sección "Sobre mí"
+- Sección de proyectos
+- Formulario de contacto
+- Descarga de CV en PDF
+- Minijuego de Snake integrado
+- Estilo retro con componentes personalizados
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tecnologías utilizadas
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- CSS
+- react-draggable
+- EmailJS
+- Lucide React / React Icons
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Objetivo del proyecto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+El objetivo de este proyecto es mostrar mi perfil como desarrollador de una forma más creativa e interactiva, combinando diseño retro con funcionalidades reales de un portfolio moderno.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estructura del proyecto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `App.tsx`: controla el escritorio y la apertura de ventanas
+- `components/Window.tsx`: componente base para las ventanas movibles
+- `components/DesktopIcon.tsx`: iconos del escritorio
+- `components/Taskbar.tsx`: barra de tareas con reloj e interacción
+- `components/AboutApp.tsx`: presentación personal
+- `components/ProyectsApp.tsx`: acceso a proyectos
+- `components/EmailApp.tsx`: formulario de contacto
+- `components/CV.tsx`: vista previa y descarga del CV
+- `components/SnakeGame.tsx`: minijuego integrado
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Instalación
+
+```bash
+npm install
+npm run dev
