@@ -41,12 +41,19 @@ El proyecto está construido con un stack moderno y herramientas de desarrollo e
 El proyecto está organizado de manera modular para facilitar la escalabilidad y el mantenimiento:
 
 - **`src/`**: Carpeta principal del código fuente.
+  - **`App.tsx`**: Controla el escritorio y la interacción con las aplicaciones.
+    - Gestiona las ventanas activas y permite abrir/cerrar aplicaciones.
+    - Usa componentes como `DesktopIcon` y `Window`.
+  - **`main.tsx`**: Punto de entrada del proyecto.
+    - Renderiza el componente raíz `App` en el DOM.
   - **`components/`**: Componentes reutilizables y específicos.
     - `Window.tsx`: Componente base para ventanas movibles.
-    - `DesktopIcon.tsx`: Iconos interactivos del escritorio.
-    - `Taskbar.tsx`: Barra de tareas con reloj e interacción.
-    - Aplicaciones específicas como `AboutApp.tsx`, `ProyectsApp.tsx`, `EmailApp.tsx`, `SnakeGame.tsx`.
-  - **`services/`**: Lógica de negocio y servicios externos (e.g., integración con EmailJS).
+      - Implementa funcionalidad de arrastre con `react-draggable`.
+      - Incluye barra de título y botón de cierre.
+    - Otros componentes como `DesktopIcon`, `Taskbar`, y aplicaciones específicas (`AboutApp`, `ProyectsApp`, `EmailApp`, `SnakeGame`).
+  - **`services/`**: Lógica de negocio y servicios externos.
+    - `chat.tsx`: Servicio para manejar la comunicación con un servidor de chat.
+      - Envía mensajes y maneja respuestas del servidor remoto.
   - **`assets/`**: Recursos estáticos como imágenes y fuentes.
 - **`public/`**: Archivos estáticos accesibles directamente.
 - **`tailwind.config.js`**: Configuración personalizada de TailwindCSS.
@@ -60,3 +67,50 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente:
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    cd mi-portfolio
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abre el navegador en `http://localhost:5173`.
+
+## Decisiones de Diseño
+
+- **React y TypeScript**: Se eligieron para garantizar un desarrollo escalable y con tipado estático, reduciendo errores en tiempo de ejecución.
+- **Vite**: Herramienta de construcción moderna que acelera el desarrollo gracias a su servidor rápido y soporte para TypeScript.
+- **TailwindCSS**: Permite un diseño eficiente y reutilizable, con soporte para personalización avanzada.
+- **Componentización**: Cada funcionalidad está encapsulada en componentes reutilizables, siguiendo principios de diseño modular.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas mejorar este proyecto, por favor sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tus cambios:
+   ```bash
+   git checkout -b feature/nueva-funcionalidad
+   ```
+3. Realiza tus cambios y haz commit:
+   ```bash
+   git commit -m "Añadida nueva funcionalidad"
+   ```
+4. Envía tus cambios:
+   ```bash
+   git push origin feature/nueva-funcionalidad
+   ```
+5. Abre un Pull Request.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
+
+¡Gracias por visitar mi portfolio! Espero que disfrutes explorando este proyecto tanto como yo disfruté creándolo.
