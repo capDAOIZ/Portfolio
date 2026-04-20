@@ -1,24 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-body{
-  font-family: 'Press Start 2P', monospace;
-
+body {
+  font-family: "Press Start 2P", monospace;
 }
+
 .desktop {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #008080; /* color clásico de escritorio Win98 */
-  background-image: url('/wallpaper.jpg'); /* opcional: imagen estilo Win95 */
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #008080;
   padding: 12px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 16px;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   overflow: hidden;
   flex-direction: column;
+}
 
+.welcome-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.welcome-window {
+  width: min(700px, calc(100vw - 32px));
+  background-color: #c0c0c0;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.welcome-title-bar {
+  background: linear-gradient(to bottom, #000080, #000060);
+  color: #fff;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.welcome-title-text {
+  font-size: 10px;
+}
+
+.welcome-content {
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 12px;
+  color: #111;
+}
+
+.welcome-content p {
+  margin: 0 0 8px;
+}
+
+.welcome-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    padding: 10px 8px 66px;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+
+  .welcome-window {
+    width: calc(100vw - 20px);
+  }
+
+  .welcome-content {
+    font-size: 9px;
+    line-height: 1.45;
+  }
 }

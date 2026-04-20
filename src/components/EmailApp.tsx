@@ -1,43 +1,73 @@
-// RetroContactForm.tsx
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
-import './EmailApp.css'
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG, isEmailJsConfigured } from "../config/env";
+import "./EmailApp.css";
 
-const RetroContactForm: React.FC = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+type FormState = {
+  name: string;
+  email: string;
+  message: string;
+};
 
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+type Status = "idle" | "sending" | "success" | "error" | "missing_config";
+
+const INITIAL_FORM: FormState = {
+  name: "",
+  email: "",
+  message: "",
+};
+
+function EmailApp() {
+  const [form, setForm] = useState<FormState>(INITIAL_FORM);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorDetail, setErrorDetail] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
 
-    const templateParams = {
-      name: form.name,
-      email: form.email,
-      message: form.message,
-      title: 'trabajo' // título oculto
-    };
+    if (!isEmailJsConfigured()) {
+      setStatus("missing_config");
+      setErrorDetail("");
+      return;
+    }
 
-    emailjs.send(
-      'tu_service_id',
-      'tu_template_id',
-      templateParams,
-      'tu_public_key'
-    ).then(() => {
-      setStatus('success');
-      setForm({ name: '', email: '', message: '' });
-    }).catch(() => {
-      setStatus('error');
-    });
+    setStatus("sending");
+    setErrorDetail("");
+
+    try {
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          name: form.name,
+          email: form.email,
+          from_email: form.email,
+          reply_to: form.email,
+          user_email: form.email,
+          message: form.message,
+          title: "nuevo_contacto_portfolio",
+          time: new Date().toLocaleString("es-ES"),
+        },
+        EMAILJS_CONFIG.publicKey
+      );
+
+      setStatus("success");
+      setForm(INITIAL_FORM);
+    } catch (err) {
+      setStatus("error");
+      if (typeof err === "object" && err !== null && "text" in err) {
+        setErrorDetail(String((err as { text?: string }).text || ""));
+      } else if (err instanceof Error) {
+        setErrorDetail(err.message);
+      } else {
+        setErrorDetail("");
+      }
+    }
   };
 
   return (
@@ -67,11 +97,8 @@ const RetroContactForm: React.FC = () => {
           />
         </div>
 
-        
-
-        {/* Caja de mensaje */}
         <div className="retro-message-box">
-        <label>Mensaje:</label>
+          <label>Mensaje:</label>
           <textarea
             name="message"
             value={form.message}
@@ -81,18 +108,29 @@ const RetroContactForm: React.FC = () => {
             className="retro-textarea"
           />
         </div>
-        {/* Botón alineado derecha */}
+
         <div className="retro-button-container">
-          <button type="submit" disabled={status === 'sending'} className="retro-button">
-            {status === 'sending' ? 'Enviando...' : 'ENVIAR'}
+          <button type="submit" disabled={status === "sending"} className="retro-button">
+            {status === "sending" ? "Enviando..." : "ENVIAR"}
           </button>
         </div>
 
-        {status === 'success' && <p className="retro-success">Correo enviado correctamente.</p>}
-        {status === 'error' && <p className="retro-error">Error al enviar. Inténtalo de nuevo.</p>}
+        {status === "success" && (
+          <p className="retro-success">Correo enviado correctamente.</p>
+        )}
+        {status === "error" && (
+          <p className="retro-error">
+            Error al enviar. {errorDetail ? `Detalle: ${errorDetail}` : "Intentalo de nuevo."}
+          </p>
+        )}
+        {status === "missing_config" && (
+          <p className="retro-error">
+            Configura EmailJS en Vercel para activar el envio del formulario.
+          </p>
+        )}
       </div>
     </form>
   );
-};
+}
 
-export default RetroContactForm;
+export default EmailApp;

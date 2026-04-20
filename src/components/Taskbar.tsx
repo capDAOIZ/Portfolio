@@ -1,15 +1,18 @@
-import { useState, useRef, useEffect } from 'react';
-import './Window.css'
-import './Taskbar.css';
-import start from '../assets/start1.png';
-import closeIcon from '../assets/close-icon.png';
+import { useEffect, useRef, useState } from "react";
+import start from "../assets/start1.png";
+import closeIcon from "../assets/close-icon.png";
+import { sendMessage } from "../services/chat";
+import "./Window.css";
+import "./Taskbar.css";
 
-  interface TaskbarProps {
-    activeWindow: string[];
-  }
+interface TaskbarProps {
+  activeWindow: string[];
+}
 
 function Taskbar({ activeWindow }: TaskbarProps) {
-  const getCurrentTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const getCurrentTime = () =>
+    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
   const [time, setTime] = useState(getCurrentTime());
   const [focused, setFocused] = useState(false);
   const [input, setInput] = useState("");
@@ -18,55 +21,50 @@ function Taskbar({ activeWindow }: TaskbarProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setFocused(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
+
   useEffect(() => {
-    function updateClock() {
+    let timeoutId: number;
+
+    const updateClock = () => {
       setTime(getCurrentTime());
-  
-      // calcular cuánto falta para el siguiente minuto exacto
       const now = new Date();
       const delay = (60 - now.getSeconds()) * 1000;
-  
-      setTimeout(updateClock, delay);
-    }
-  
+      timeoutId = window.setTimeout(updateClock, delay);
+    };
+
     updateClock();
-  
-    return () => clearTimeout(updateClock as any);
+    return () => window.clearTimeout(timeoutId);
   }, []);
+
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && input.trim() !== "") {
-      setLoading(true);
-      setResponse("Pensando...");
+    if (e.key !== "Enter" || input.trim() === "") {
+      return;
+    }
 
-      try {
-        const res = await fetch("https://ia-prueba.onrender.com/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ userMessage: input })
-        });
+    setLoading(true);
+    setResponse("Pensando...");
 
-        if (!res.ok) {
-          throw new Error("Error al contactar con el servidor");
-        }
-
-        const data = await res.json();
-        setResponse(data.reply);
-      } catch (err) {
-        console.error("❌ Error:", err);
-        setResponse("⚠️ Ha ocurrido un error. Intenta de nuevo.");
-      } finally {
-        setLoading(false);
-      }
+    try {
+      const reply = await sendMessage(input);
+      setResponse(reply);
+    } catch (err) {
+      console.error("Error:", err);
+      setResponse("El asistente esta saturado ahora mismo. Intentalo de nuevo en unos segundos.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,27 +72,38 @@ function Taskbar({ activeWindow }: TaskbarProps) {
     <div className="taskbar">
       <button
         className="start-button"
-        onClick={() => window.location.href = 'https://github.com/capDAOIZ'}
+        onClick={() => {
+          window.location.href = "https://github.com/capDAOIZ";
+        }}
       >
-        <img src={start} alt="a" />Start
+        <img src={start} alt="a" />
+        Start
       </button>
 
       <div className="search-container" ref={containerRef}>
-        {focused &&
+        {focused && (
           <div className="search-popup animated">
             <div className="title-bar">
-              <span className="title-bar-text">¿Qué quieres saber?</span>
+              <span className="title-bar-text">Que quieres saber?</span>
               <div className="title-bar-controls">
                 <button onClick={() => setFocused(false)}>
-                  <img src={closeIcon} alt="Close" /><span></span>
+                  <img src={closeIcon} alt="Close" />
+                  <span />
                 </button>
               </div>
             </div>
+
             <div className="popup-content">
-              {loading ? <p><em>{response}</em></p> : <p>{response}</p>}
+              {loading ? (
+                <p>
+                  <em>{response}</em>
+                </p>
+              ) : (
+                <p>{response}</p>
+              )}
             </div>
           </div>
-        }
+        )}
 
         <input
           type="text"
@@ -107,7 +116,7 @@ function Taskbar({ activeWindow }: TaskbarProps) {
         />
       </div>
 
-      <div className="task">{activeWindow.join(' ')}</div>
+      <div className="task">{activeWindow.join(" ")}</div>
       <div className="clock">{time}</div>
     </div>
   );

@@ -1,0 +1,59 @@
+.cv-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cv-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cv-page-indicator {
+  font-size: 10px;
+  background: #c0c0c0;
+  border: 2px inset #fff;
+  padding: 6px 8px;
+}
+
+.cv-canvas-wrapper {
+  background: #7f7f7f;
+  border: 2px inset #fff;
+  min-height: 520px;
+  max-height: 520px;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8px;
+}
+
+.cv-canvas-wrapper canvas {
+  border: 1px solid #222;
+  box-shadow: 2px 2px 0 #000;
+  max-width: 100%;
+  height: auto;
+}
+
+.hidden-canvas {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .cv-toolbar {
+    gap: 6px;
+  }
+
+  .cv-page-indicator {
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+
+  .cv-canvas-wrapper {
+    min-height: 320px;
+    max-height: calc(100dvh - 260px);
+    padding: 6px;
+  }
+}

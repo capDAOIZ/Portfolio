@@ -64,5 +64,41 @@
   padding: 10px;
   background-color: #bdbdbd;
   font-size: 14px;
-  
+  max-height: calc(100dvh - 170px);
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .window.mobile-window {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 0;
+    width: min(94vw, 460px);
+    height: auto;
+    max-height: calc(100dvh - 110px);
+    z-index: 50;
+  }
+
+  .window.mobile-window .title-bar {
+    height: 26px;
+    cursor: default;
+    touch-action: none;
+  }
+
+  .window.mobile-window .title-bar-text {
+    font-size: 9px;
+  }
+
+  .window.mobile-window .title-bar-controls button {
+    width: 22px;
+    height: 20px;
+  }
+
+  .window.mobile-window .window-content {
+    max-height: calc(100dvh - 170px);
+    padding: 8px;
+    font-size: 12px;
+  }
 }

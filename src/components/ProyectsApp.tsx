@@ -1,26 +1,34 @@
-import proyectosImg from '../assets/ordenador.png';
-import curriculumImg from '../assets/papel.png';
-import DesktopIcon from './DesktopIcon';
-import './DesktopIcon.css';
-import './ProyectsApp.css'; // <- Esto importa los estilos
+import cryptolakeImg from "../assets/monedafinal.png";
+import laravelImg from "../assets/laravelfinal.png";
+import wallapopImg from "../assets/wallapopfinal.png";
+import DesktopIcon from "./DesktopIcon";
+import "./DesktopIcon.css";
+import "./ProyectsApp.css";
 
 function ProyectsApp() {
+  const cryptolakeUrl =
+    "https://github.com/capDAOIZ/CryptoLake-Plataforma-de-Anal-tica-Crypto-en-Tiempo-Real";
+  const laravelUrl =
+    "https://github.com/capDAOIZ/api-laravel--CRUD--REST--Documentacion_automatica--Preubas_generadas";
+  const wallapopUrl =
+    "https://github.com/capDAOIZ/Wallapop-Scraper-Alerts--Busqueda-automatica-y-notificaciones-por-Telegram";
+
   return (
     <div className="project-icons">
       <DesktopIcon
-        label="Proyectos"
-        onDoubleClick={() =>
-          window.open(
-            'https://openrouter.ai/activity?api_key_id=6195504&to=2025-07-29T11%3A57%3A39.343Z&from=2025-06-29T11%3A57%3A39.735Z',
-            '_blank'
-          )
-        }
-        icon={proyectosImg}
+        label="CryptoLake"
+        onDoubleClick={() => window.open(cryptolakeUrl, "_blank")}
+        icon={cryptolakeImg}
       />
       <DesktopIcon
-        label="Currículum"
-        onDoubleClick={() => console.log('Abriendo Currículum')}
-        icon={curriculumImg}
+        label="Laravel API"
+        onDoubleClick={() => window.open(laravelUrl, "_blank")}
+        icon={laravelImg}
+      />
+      <DesktopIcon
+        label="Wallapop"
+        onDoubleClick={() => window.open(wallapopUrl, "_blank")}
+        icon={wallapopImg}
       />
     </div>
   );

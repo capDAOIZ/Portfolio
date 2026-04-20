@@ -20,10 +20,16 @@
   gap: 10px;
 }
 
+.retro-message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .retro-input {
   flex-grow: 1;
   margin-left: auto;
-  width: 271px;
+  width: min(271px, 100%);
   padding: 6px;
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
@@ -64,9 +70,12 @@
 
 
 .retro-textarea {
-  margin: 10px;
-  width: 95%;
-  height: 200px;
+  margin: 0;
+  width: 100%;
+  min-height: 150px;
+  height: 170px;
+  padding: 8px;
+  line-height: 1.4;
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
   resize: none;
@@ -79,6 +88,7 @@
   box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
   outline: none;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .retro-textarea:focus {
@@ -103,3 +113,33 @@
     background-color: #bdbdbd;
     font-size: 14px;
   }
+
+@media (max-width: 768px) {
+  .retro-container {
+    margin: 4px;
+  }
+
+  .retro-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .retro-input {
+    width: 100%;
+    margin-left: 0;
+    font-size: 9px;
+  }
+
+  .retro-textarea {
+    min-height: 130px;
+    height: 150px;
+    font-size: 9px;
+  }
+
+  .retro-button {
+    font-size: 9px;
+    padding: 8px 12px;
+  }
+}

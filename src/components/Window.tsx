@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import './Window.css';
 
@@ -12,10 +12,19 @@ interface WindowProps {
 
 function Window({ title, onClose, children }: WindowProps) {
   const nodeRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   return (
-    <Draggable nodeRef={nodeRef} handle=".title-bar">
-      <div ref={nodeRef} className="window">
+    <Draggable nodeRef={nodeRef} handle=".title-bar" disabled={isMobile}>
+      <div ref={nodeRef} className={`window ${isMobile ? "mobile-window" : ""}`}>
         <div className="title-bar">
           <span className="title-bar-text">{title}</span>
           <div className="title-bar-controls">

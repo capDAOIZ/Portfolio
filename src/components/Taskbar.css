@@ -1,117 +1,163 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
 .taskbar {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  justify-content: space-between;
+  color: #222;
+  z-index: 60;
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #dcdcdc;
+  border: 2px outset #fff;
+  padding: 2px 6px;
+  min-height: 28px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+}
+
+.start-button:active {
+  border: 2px inset #808080;
+}
+
+.task {
+  flex: 1;
+  font-size: 10px;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clock {
+  font-size: 10px;
+  min-width: 52px;
+  text-align: right;
+}
+
+.search-container {
+  position: relative;
+  width: min(320px, 42vw);
+}
+
+.search-input {
+  width: 100%;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 4px 6px;
+  color: black;
+  background-color: #ffffff;
+  border: 2px solid #c0c0c0;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-bottom-color: #808080;
+  border-right-color: #808080;
+  outline: none;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+
+.search-input:focus {
+  border: 2px inset #808080;
+  background-color: #e0e0e0;
+}
+
+.search-popup {
+  position: absolute;
+  bottom: 34px;
+  right: 0;
+  width: min(460px, 70vw);
+  height: 220px;
+  background-color: #c0c0c0;
+  transition: opacity 0.3s ease;
+  z-index: 70;
+  border: 2px solid #000;
+  border-bottom: 0;
+  overflow: hidden;
+}
+
+.animated {
+  animation: slideUpFadeIn 0.3s ease forwards;
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.popup-content {
+  height: calc(100% - 22px);
+  overflow: auto;
+}
+
+.popup-content p {
+  padding: 10px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .taskbar {
+    height: 58px;
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .start-button {
+    min-height: 34px;
+    font-size: 8px;
+    padding: 4px 6px;
+  }
+
+  .task {
+    display: none;
+  }
+
+  .clock {
+    font-size: 9px;
+    min-width: 46px;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .search-input {
+    font-size: 8px;
+    padding: 6px;
+  }
+
+  .search-popup {
     left: 0;
     right: 0;
-    height: 32px;
-    background-color: #c0c0c0;
-    border-top: 2px solid #000;
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-    justify-content: space-between;
-    color: #808080;
-  }
-  
-  .start-button {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background-color: #dcdcdc;
-    border: 2px outset #fff;
-    padding: 2px 6px;
-    height: 26px;
-    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
-    cursor: pointer;
-    font-family: 'Press Start 2P', monospace;
-  }
-  
-  .start-button:active {
-    border: 2px inset #808080;
-  }
-  
-  .start-icon {
-    width: 5px;           /* Tamaño exacto */
-    height: 5px;
-    image-rendering: pixelated;
-    object-fit: contain;
-  }
-  
-  .task {
-    flex-grow: 1;
-    padding-left: 12px;
-    font-size: 14px;
-    user-select: none;
-    cursor: default;
-  }
-  
-  .clock {
-    font-size: 14px;
-  }
-  .search-container {
-    position: relative;
-    width: 300px;
-    margin: 150px auto; 
-  }
-  
-  .search-input {
     width: 100%;
-    padding: 1px;
-    margin-left: 10px;
-    border: 1px solid gray;
-    border-radius: 4px;
-    outline: none;
-  }
-  
-  .search-popup {
-    position: absolute;
-    bottom: 26px; /* sube el rectángulo por encima del input */
-    width: 450px;
     height: 250px;
-    background-color: #c0c0c0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    border: 2px solid #000;
-    border-bottom: 0px;
+    bottom: 40px;
   }
-  .animated {
-    animation: slideUpFadeIn 0.4s ease forwards;
+
+  .popup-content p {
+    font-size: 9px;
   }
-  
-  /* Animación: sube y aparece */
-  @keyframes slideUpFadeIn {
-    0% {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  .popup-content p{
-    padding: 10px;
-  }
-  .search-input {
-    width: 250px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    padding: 4px;
-    color: black;
-    background-color: #ffffff;
-    border: 2px solid #c0c0c0;
-    border-top-color: #ffffff;
-    border-left-color: #ffffff;
-    border-bottom-color: #808080;
-    border-right-color: #808080;
-    outline: none;
-    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
-  }
-  
-  .search-input:focus {
-    border: 2px inset #808080;
-    background-color: #e0e0e0;
-  }
+}
